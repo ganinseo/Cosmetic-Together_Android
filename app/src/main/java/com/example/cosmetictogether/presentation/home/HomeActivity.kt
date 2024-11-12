@@ -10,6 +10,8 @@ import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import com.example.cosmetictogether.R
 import com.example.cosmetictogether.presentation.login.LoginActivity
+import com.example.cosmetictogether.presentation.post.view.PostActivity
+import com.example.cosmetictogether.presentation.post.view.PostWriteActivity
 
 class HomeActivity : AppCompatActivity() {
     private lateinit var previousButton: Button
@@ -22,7 +24,7 @@ class HomeActivity : AppCompatActivity() {
         previousButton = findViewById(R.id.previousButton) // 버튼 ID와 연결
 
         previousButton.setOnClickListener {
-            startActivity(Intent(this, LoginActivity::class.java))
+            startActivity(Intent(this, PostActivity::class.java))
         }
     }
 }

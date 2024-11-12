@@ -46,5 +46,23 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent" />
 
+        <LinearLayout
+            android:id="@+id/footerLayout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="16dp"
+            android:background="@android:color/white"
+            app:layout_constraintBottom_toBottomOf="parent">
+
+            <Button
+                android:layout_gravity="end"
+                android:layout_width="70dp"
+                android:layout_height="wrap_content"
+                android:text="폼 작성"
+                android:background="@drawable/stroke_sky_full_angle"
+                android:textColor="@android:color/white" />
+        </LinearLayout>
+
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

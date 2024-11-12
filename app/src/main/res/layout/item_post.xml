@@ -5,7 +5,9 @@
     <!--글 틀 아이템-->
 
     <data>
-
+        <variable
+            name="post"
+            type="com.example.cosmetictogether.data.model.PostRecentResponse" />
     </data>
 
     <LinearLayout
@@ -27,7 +29,7 @@
                 android:id="@+id/profileImage"
                 android:layout_width="40dp"
                 android:layout_height="40dp"
-                android:src="@drawable/baseline_account_box_24"
+                app:srcCompat="@{post.profileUrl}"
                 android:scaleType="centerCrop"
                 android:layout_marginEnd="8dp" />
 
@@ -35,10 +37,18 @@
                 android:id="@+id/username"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="강인서"
+                android:text="@{post.writerNickName}"
                 android:textSize="14sp"
                 android:textStyle="bold"
                 android:textColor="@color/black" />
+
+            <TextView
+                android:id="@+id/uploadTime"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@{post.postTime}"
+                android:textSize="12sp"
+                android:textStyle="bold" />
         </LinearLayout>
 
         <ImageView
@@ -46,16 +56,56 @@
             android:layout_width="match_parent"
             android:layout_height="200dp"
             android:layout_marginTop="8dp"
-            android:src="@drawable/baseline_child_care_24" />
+            app:srcCompat="@{post.boardUrl[0]}" />
 
         <TextView
             android:id="@+id/postContent"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
-            android:text="이 글은 영국에서부터 시작되어.."
+            android:text="@{post.description}"
             android:textSize="14sp"
             android:textColor="@color/black" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginTop="8dp"
+            android:gravity="center_vertical">
+
+            <ImageView
+                android:layout_width="24dp"
+                android:layout_height="24dp"
+                app:srcCompat="@drawable/baseline_mode_comment_24" />
+
+            <TextView
+                android:id="@+id/commentCount"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="4dp"
+                android:text="@{String.valueOf(post.commentCount)}"
+                android:textSize="14sp"
+                android:textColor="@color/black" />
+
+            <Space
+                android:layout_width="16dp"
+                android:layout_height="wrap_content" />
+
+            <ImageView
+                android:layout_width="24dp"
+                android:layout_height="24dp"
+                app:srcCompat="@drawable/baseline_favorite_24" />
+
+            <TextView
+                android:id="@+id/favoriteCount"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="4dp"
+                android:text="@{String.valueOf(post.likeCount)}"
+                android:textSize="14sp"
+                android:textColor="@color/black" />
+        </LinearLayout>
 
         <View
             android:layout_width="match_parent"
