@@ -63,7 +63,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
-            android:text="@{post.description}"
+            android:text='@{post.description != null ? post.description : "내용 없음"}'
             android:textSize="14sp"
             android:textColor="@color/black" />
 

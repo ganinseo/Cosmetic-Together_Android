@@ -10,20 +10,31 @@ import com.example.cosmetictogether.data.model.PostDetailResponse
 import com.example.cosmetictogether.data.model.PostEditRequest
 import com.example.cosmetictogether.data.model.PostEditResponse
 import com.example.cosmetictogether.data.model.PostRecentResponse
+import okhttp3.MultipartBody
+import okhttp3.RequestBody
 import retrofit2.Call
 import retrofit2.http.Body
 import retrofit2.http.DELETE
 import retrofit2.http.GET
+import retrofit2.http.Header
+import retrofit2.http.Multipart
 import retrofit2.http.PATCH
 import retrofit2.http.POST
+import retrofit2.http.Part
 import retrofit2.http.Path
 
 interface PostRetrofitInterface {
-    @POST("/api/v1/board") // 글 작성
-    fun postWrite(@Body request: PostWriteRequest): Call<PostWriteResponse>
+    @Multipart
+    @POST("/api/v1/board")
+    fun postWrite(
+        @Header("Authorization") token: String,
+        @Part images: List<MultipartBody.Part>,
+        @Part("request") request: RequestBody
+    ): Call<PostWriteResponse>
 
     @GET("/api/v1/board/recent") // 최신 글 조회
-    fun postRecent(): List<PostRecentResponse>
+    fun postRecent(): Call<List<PostRecentResponse>>
+
 
     @GET("/api/v1/board/info/{boardId}") // 수정 후 출력
     fun postAfterEdit(@Path("boardId") boardId: Long): Call<PostAfterEditResponse>

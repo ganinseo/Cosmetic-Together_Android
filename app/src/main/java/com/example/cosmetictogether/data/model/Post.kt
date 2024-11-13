@@ -15,7 +15,6 @@ data class PostRecentResponse(
 )
 
 data class PostWriteRequest(
-    @Header("Authorization") val token: String,
     @SerializedName("images") val images: List<String>? = null,
     @SerializedName("request") val request: String
 )

@@ -6,6 +6,9 @@ plugins {
 }
 
 android {
+    buildFeatures {
+        buildConfig = true
+    }
     namespace = "com.example.cosmetictogether"
     compileSdk = 34
 

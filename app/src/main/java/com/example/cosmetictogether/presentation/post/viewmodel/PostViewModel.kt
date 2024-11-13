@@ -9,26 +9,29 @@ import com.example.cosmetictogether.presentation.post.adapter.PostRepository
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
-import retrofit2.Response
 
 class PostViewModel(private val repository: PostRepository) : ViewModel() {
-
     private val _posts = MutableLiveData<List<PostRecentResponse>>()
     val posts: LiveData<List<PostRecentResponse>> get() = _posts
 
     fun fetchPosts() {
-        viewModelScope.launch(Dispatchers.IO) { // Run network operation on background thread
+        viewModelScope.launch(Dispatchers.IO) {
             try {
-                val posts = repository.getRecentPosts() // Call suspend function
-                withContext(Dispatchers.Main) { // Switch back to the main thread to update UI
+                val posts = repository.getRecentPosts()
+                withContext(Dispatchers.Main) {
                     _posts.value = posts
                 }
             } catch (e: Exception) {
-                // Handle failure (network error, etc.)
                 withContext(Dispatchers.Main) {
-                    _posts.value = emptyList() // Optionally handle error
+                    _posts.value = emptyList()
                 }
             }
         }
+    }
+
+    fun addNewPost(newPost: PostRecentResponse) {
+        val currentPosts = _posts.value?.toMutableList() ?: mutableListOf()
+        currentPosts.add(0, newPost)
+        _posts.value = currentPosts
     }
 }

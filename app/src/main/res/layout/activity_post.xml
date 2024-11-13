@@ -5,8 +5,8 @@
 
     <data>
         <variable
-            name="post"
-            type="com.example.cosmetictogether.data.model.PostRecentResponse" />
+            name="viewModel"
+            type="com.example.cosmetictogether.presentation.post.viewmodel.PostViewModel" />
     </data>
     <!--글 바텀 네비게이션 바-->
     <androidx.constraintlayout.widget.ConstraintLayout
